@@ -7,7 +7,7 @@ namespace Unbelievable
 {
     public partial class ViewController : NSViewController
     {
-        List<Sweets> sweetsList = new List<Sweets>();
+        List<Sweets> sweetsList = new List<Sweets>();//создаем очередь из сладостей
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -33,52 +33,60 @@ namespace Unbelievable
             }
         }
 
-       
 
-        partial void btnGet(AppKit.NSButtonCell sender)
+
+        partial void btnGet(AppKit.NSButtonCell sender)//кнопка получить товар
 
         {
-            
+            if (this.sweetsList.Count == 0)//если в автомате не осталось товара
+            {
+                txtGett.StringValue = "Пусто -_-";
+                return;
+            }
+
+            var fruit = this.sweetsList[0];
+            this.sweetsList.RemoveAt(0);//убираем элемент из списка
+
+            txtGett.StringValue = fruit.GetInfo();
+
+            ShowInfo();
         }
 
-        partial void btnRefill(AppKit.NSButton sender)
+        partial void btnRefill(AppKit.NSButton sender)//кнопка заполнения автомата
         {
             this.sweetsList.Clear();
             var rnd = new Random();
-            for (var i = 0; i < 10; ++i)
+            for (var i = 0; i < 10; ++i)//количество товаров в автомате 
             {
-                switch (rnd.Next() % 3) // генерирую случайное число от 0 до 2 (ну остаток от деления на 3)
+                switch (rnd.Next() % 3) // генерирую случайное число от 0 до 2 для выдачи 
                 {
-                    case 0: // если 0, то мандарин
-                        this.sweetsList.Add(new Chocolate());
+                    case 0: //если 0, то шоколад
+                        this.sweetsList.Add(Chocolate.Generate());
                         break;
-                    case 1: // если 1 то виноград
-                        this.sweetsList.Add(new Fruits());
+                    case 1: // если 1, то фрукт
+                        this.sweetsList.Add(Fruits.Generate());
                         break;
-                    case 2: // если 2 то арбуз
-                        this.sweetsList.Add(new Bakery());
+                    case 2: // если 2, то выпечка
+                        this.sweetsList.Add(Bakery.Generate());
                         break;
-                        // появление других чисел маловероятно
+
                 }
             }
-            ShowInfo(); // И СЮДА
+            ShowInfo(); // вывод информации о выбранном товаре
         }
 
         private void ShowInfo()
         {
-            // заведем счетчики под каждый тип
+            // заводим счетчики под каждый тип
             int chocoCount = 0;
             int fruitCount = 0;
             int bakeryCount = 0;
 
-            // пройдемся по всему списку
+
             foreach (var sweet in this.sweetsList)
             {
-                // помните, что в списки у нас лежат фрукты,
-                // то есть объекты типа Fruit
-                // поэтому чтобы проверить какой именно фрукт
-                // мы в данный момент обозреваем, мы используем ключевое слово is
-                if (sweet is Chocolate) // читается почти как чистый инглиш, "если fruit есть Мандарин"
+
+                if (sweet is Chocolate)
                 {
                     chocoCount += 1;
                 }
@@ -92,14 +100,14 @@ namespace Unbelievable
                 }
             }
 
-            // а ну и вывести все это надо на форму
-            txtInfo.StringValue = "Шоко\tФрукт\tВыпчк"; // буквы экнмлю, чтобы влезло на форму
+            //выводим на форму
+            txtInfo.StringValue = "Шоко\tФрукт\tВыпчк";
             txtInfo.StringValue += "\n";
 
             txtInfo.StringValue += String.Format("{0}\t\t{1}\t\t{2}", chocoCount, fruitCount, bakeryCount);
-    
-      
-            
+
+
+
         }
     }
 }
