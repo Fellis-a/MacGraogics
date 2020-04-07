@@ -21,6 +21,9 @@ namespace Unbelievable
 		[Outlet]
 		AppKit.NSTextField txtInfo { get; set; }
 
+		[Outlet]
+		AppKit.NSTextField txtQueue { get; set; }
+
 		[Action ("btnGet:")]
 		partial void btnGet (AppKit.NSButtonCell sender);
 
@@ -34,14 +37,19 @@ namespace Unbelievable
 				txtGet = null;
 			}
 
+			if (txtGett != null) {
+				txtGett.Dispose ();
+				txtGett = null;
+			}
+
 			if (txtInfo != null) {
 				txtInfo.Dispose ();
 				txtInfo = null;
 			}
 
-			if (txtGett != null) {
-				txtGett.Dispose ();
-				txtGett = null;
+			if (txtQueue != null) {
+				txtQueue.Dispose ();
+				txtQueue = null;
 			}
 		}
 	}

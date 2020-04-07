@@ -732,7 +732,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhq-Br-qjF">
-                                <rect key="frame" x="88" y="174" width="302" height="47"/>
+                                <rect key="frame" x="88" y="174" width="187" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" selectable="YES" title="&gt;&gt;" id="DzK-3R-aYH">
                                     <font key="font" metaFont="system"/>
@@ -749,11 +749,21 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNc-xw-X0d">
+                                <rect key="frame" x="292" y="148" width="103" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" title="Ожидание..." id="jar-BQ-2J4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="txtGett" destination="2z3-Qh-z6G" id="njA-o4-vMG"/>
                         <outlet property="txtInfo" destination="qhq-Br-qjF" id="5cT-LU-Bdg"/>
+                        <outlet property="txtQueue" destination="ZNc-xw-X0d" id="YUe-tQ-oJO"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

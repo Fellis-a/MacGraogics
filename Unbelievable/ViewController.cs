@@ -45,8 +45,9 @@ namespace Unbelievable
             }
 
             var fruit = this.sweetsList[0];
+            
             this.sweetsList.RemoveAt(0);//убираем элемент из списка
-
+            QueueInfo();
             txtGett.StringValue = fruit.GetInfo();
 
             ShowInfo();
@@ -72,9 +73,32 @@ namespace Unbelievable
 
                 }
             }
+            QueueInfo();
+
             ShowInfo(); // вывод информации о выбранном товаре
         }
+        private void QueueInfo()
+        {
+            var str = "Очередь:\n";
+            for (int i = 0; i < sweetsList.Count; i++)
+            {
+                if (this.sweetsList[i] is Chocolate)
+                {
+                    str += "Шоколад\n";
+                }
+             
+                else if (this.sweetsList[i] is Fruits)
+                {
+                    str += "Фрукт\n";
+                }
+                else if (this.sweetsList[i] is Bakery)
+                {
+                    str += "Выпечка\n";
+                }
 
+            }
+            txtQueue.StringValue = str;
+        }
         private void ShowInfo()
         {
             // заводим счетчики под каждый тип
